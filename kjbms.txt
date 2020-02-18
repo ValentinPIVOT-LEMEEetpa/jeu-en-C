@@ -1,7 +1,11 @@
 ---jeu de gestion---
 
-Le joueur a des ressources, et chaque jour il perd des ressources car il nourrit une population qui grandit de jour en jour.
-Au début de chaque jour, le joueur a la possibilité d'acheter des ressources où d'agrendir ses stocks/champs pour pouvoir avoir/produire plus de ressources
+Le joueur a des ressources, et chaque jour il perd des ressources car il nourrit une population qui grandit de jour 
+en jour.
+
+Au début de chaque jour, le joueur a la possibilité d'acheter des ressources où d'agrendir ses stocks/champs pour 
+pouvoir avoir/produire plus de ressources
+
 le joueur perd quand il n'a plus de ressource
 
 
@@ -10,3 +14,50 @@ ________________________________________________________________________________
 
 player.money = player.population * 10
 // Le 10 represente le nombre d'or que rapporte une personne de la population
+
+
+____________________________________________________________________________________________________________________________________________________________
+
+liquides:
+-vin
+-biere
+-eau
+-eau de vie
+
+viandes:
+-boeuf
+-dinde
+-lapin
+-biche
+
+poissons:
+-saumon
+-truite
+-dorade
+-sole
+
+cereales:
+-ble
+-sarrasin
+-orge
+-seigle
+
+liquides wine = {"vin", 15, 1};
+liquides beer = {"biere", 10, 2};
+liquides water = {"eau", 5, 3};
+liquides lifeWater = {"eau de vie", 20, 4};
+
+viandes  beef = {"steack", 15, 1};
+viandes turkey = {"dinde", 10, 2};
+viandes rabbit= {"lapin", 5, 3};
+viandes dear = {"biche", 20, 4};
+
+poissons salmon = {"saumon", 15, 1};
+poissons trout = {"truite", 10, 2};
+poissons seaBream= {"dorade", 5, 3};
+poissons soll = {"sole", 20, 4};
+
+cereales wheat = {"ble", 15, 1};
+cereales buckwheat = {"sarrasin", 10, 2};
+cereales barley = {"orge", 5, 3};
+cereales rye = {"seigle", 20, 4};
