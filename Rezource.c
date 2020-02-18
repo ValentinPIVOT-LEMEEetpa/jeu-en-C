@@ -39,6 +39,16 @@ int main(){
 	while(stock >= 1){
 
 		scanf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour produire plus")
+		switch(choixJoueur){
+			case 1: // achat des nourritures
+			break;
+			case 2: // amelioration des stocks
+			break;
+			case 3: // amelioration des champs
+			break;
+		}
+
+
 	}
 
 }
