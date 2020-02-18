@@ -1,0 +1,12 @@
+---jeu de gestion---
+
+Le joueur a des ressources, et chaque jour il perd des ressources car il nourrit une population qui grandit de jour en jour.
+Au début de chaque jour, le joueur a la possibilité d'acheter des ressources où d'agrendir ses stocks/champs pour pouvoir avoir/produire plus de ressources
+le joueur perd quand il n'a plus de ressource
+
+
+____________________________________________________________________________________________________________________________________________________________
+
+
+player.money = player.population * 10
+// Le 10 represente le nombre d'or que rapporte une personne de la population
