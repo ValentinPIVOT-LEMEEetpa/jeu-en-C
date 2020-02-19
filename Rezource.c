@@ -42,7 +42,7 @@ liquides beer = {"biere", 10, 2};
 liquides water = {"eau", 5, 1};
 liquides lifeWater = {"eau de vie", 20, 4};
 
-viandes  beef = {"steack", 15, 3};
+viandes beef = {"steack", 15, 3};
 viandes turkey = {"dinde", 10, 2};
 viandes rabbit= {"lapin", 5, 1};
 viandes dear = {"biche", 20, 4};
@@ -73,21 +73,33 @@ int main(){
 	int choixPoisson;
 	int choixCereale;
 	int choixStock;
+	int choixChamp;
+	int choixChampCereale;
+
+	int choixReload;
 
 	int po;
 	int argentStock;
-	int argentChamp;
+	int ctBle;
+	int ctSarrasin;
+	int ctOrge;
+	int ctSeigle;
 
-	stock = 10;
+	stock = 1;
 	stockMax = 5;
 	pop = 1;
 
 	po = 50;
 	argentStock = 10;
 
+	ctBle = 25;
+	ctSarrasin = 20;
+	ctOrge = 15;
+	ctSeigle = 30;
+
 	day = 1;
 
-	while(stock >= 0 ){
+	while(stock > 0  ){
 		Color(0,15);
 		printf("----JOUR %d----\n", day);
 		Color(15,0);
@@ -97,7 +109,7 @@ int main(){
 		printf("ta population est de %d\n", pop);
 		printf("ton argent est de %d\n", po);
 		Color(15,0);
-		printf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour produire plus et uniquement des cereales\n");
+		printf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour que t'es cereales poussent seul\n");
 		scanf("%d", &choixJoueur);
 		switch(choixJoueur){
 			case 1: // achat des nourritures
@@ -514,12 +526,97 @@ int main(){
 				
 			break;
 			case 3: // amelioration des champs
+				printf("es-tu sur de faire cette amelioration? [1]oui|[2]non\n");
+				scanf("%d", &choixChamp);
+				switch(choixChamp){
+					case 1:
+						printf("quelle cereale veut tu ameliore?\n[1]ble [2]sarrasin [3]orge [4]seigle\n");
+						scanf("%d", &choixChampCereale);
+						switch(choixChampCereale){
+							case 1: //amelioration du ble
+								if(po >= ctBle){
+									stock = stock + wheat.poids ;
+									printf("ton ble pousse tout seul\n");
+								}
+								else if(po < ctBle){
+									printf("t'as pas asser d'argent\n");
+								}
+							break;
+							case 2: //amelioration du sarrasin
+							break;
+							case 3: //amelioration de l'orge
+							break;
+							case 4: //amelioration du seigle
+							break;
+						}
+					break;
+				}
 			break;
 		}
 		
+		
 		day = day + 1;
 		pop = pop * 2;
-		po = po +(pop * 5);
+
+		wine.prix = wine.prix + 15;
+		beer.prix = beer.prix + 15;
+		water.prix = water.prix + 15;
+		lifeWater.prix = lifeWater.prix + 15;
+		beef.prix = beef.prix + 15;
+		turkey.prix = turkey.prix + 15;
+		rabbit.prix = rabbit.prix + 15;
+		dear.prix = dear.prix + 15;
+		salmon.prix = salmon.prix + 15;
+		trout.prix = trout.prix + 15;
+		seaBream.prix = seaBream.prix + 15;
+		soll.prix = soll.prix + 15;
+		wheat.prix = wheat.prix + 15;
+		buckwheat.prix = buckwheat.prix + 15;
+		barley.prix = barley.prix + 15;
+		rye.prix  = rye.prix + 15;
+
+		po = po + pop + 10;
 		stock =  stock / 2;
+
+		if (stock <= 0){
+		printf("tu  as perdu\nTu veux recommence?\n[1]oui|[2]non\n");
+		scanf("%d", &choixReload);
+		switch(choixReload){
+			case 1:
+				stock = 1;
+				stockMax = 5;
+				pop = 1;
+				po = 50;
+				argentStock = 10;
+				ctBle = 25;
+				ctSarrasin = 20;
+				ctOrge = 15;
+				ctSeigle = 30;
+				day = 1;
+
+				wine.prix = 15;
+				beer.prix = 10;
+				water.prix = 5;
+				lifeWater.prix = 20;
+				
+				beef.prix = 15;
+				turkey.prix = 10;
+				rabbit.prix = 5;
+				dear.prix = 20;
+				
+				salmon.prix = 15;
+				trout.prix = 10;
+				seaBream.prix = 5; 
+				soll.prix = 20;
+				
+				wheat.prix = 15;
+				buckwheat.prix = 10;
+				barley.prix = 5;
+				rye.prix = 20;
+			break;
+		}
+
+		}
 	}
+
 }
