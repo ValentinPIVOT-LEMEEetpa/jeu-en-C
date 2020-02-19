@@ -22,7 +22,9 @@ void Color(int t,int f){
 	12 : Rouge fluo
 	13 : Violet 2
 	14 : Jaune
-	15 : Blanc*/
+	15 : Blanc
+	Color();
+	*/
 
 };
 
@@ -85,6 +87,11 @@ int main(){
 	int ctOrge;
 	int ctSeigle;
 
+	int pousseBle;
+	int pousseSarrasin;
+	int pousseOrge;
+	int pousseSeigle;
+
 	stock = 1;
 	stockMax = 5;
 	pop = 1;
@@ -97,16 +104,18 @@ int main(){
 	ctOrge = 15;
 	ctSeigle = 30;
 
+	pousseBle = 0;
+
 	day = 1;
 
 	while(stock > 0  ){
 		Color(0,15);
 		printf("----JOUR %d----\n", day);
 		Color(15,0);
-		Color(14,0);
 		printf("ta capacite max est de %d\n", stockMax);
 		printf("ton stock est de: %d\n", stock);
 		printf("ta population est de %d\n", pop);
+		Color(9,0);
 		printf("ton argent est de %d\n", po);
 		Color(15,0);
 		printf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour que t'es cereales poussent seul\n");
@@ -535,7 +544,7 @@ int main(){
 						switch(choixChampCereale){
 							case 1: //amelioration du ble
 								if(po >= ctBle){
-									stock = stock + wheat.poids ;
+									pousseBle = pousseBle + 1;
 									printf("ton ble pousse tout seul\n");
 								}
 								else if(po < ctBle){
@@ -543,10 +552,31 @@ int main(){
 								}
 							break;
 							case 2: //amelioration du sarrasin
+								if(po >= ctSarrasin){
+									pousseSarrasin = pousseSarrasin + 1;
+									printf("ton sarrasin pousse tout seul\n");
+								}
+								else if(po < ctSarrasin){
+									printf("t'as pas asser d'argent\n");
+								}
 							break;
 							case 3: //amelioration de l'orge
+								if(po >= ctOrge){
+									pousseOrge = pousseOrge + 1;
+									printf("ton orge pousse tout seul\n");
+								}
+								else if(po < ctOrge){
+									printf("t'as pas asser d'argent\n");
+								}
 							break;
 							case 4: //amelioration du seigle
+								if(po >= ctSeigle){
+									pousseSeigle = pousseSeigle + 1;
+									printf("ton seigle pousse tout seul\n");
+								}
+								else if(po < ctSeigle){
+									printf("t'as pas asser d'argent\n");
+								}
 							break;
 						}
 					break;
@@ -576,7 +606,7 @@ int main(){
 		rye.prix  = rye.prix + 15;
 
 		po = po + pop + 10;
-		stock =  stock / 2;
+		stock =  stock + pousseBle + pousseSeigle + pousseSarrasin + pousseOrge / 2;
 
 		if (stock <= 0){
 		printf("tu  as perdu\nTu veux recommence?\n[1]oui|[2]non\n");
