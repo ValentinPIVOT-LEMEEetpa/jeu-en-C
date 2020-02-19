@@ -61,6 +61,8 @@ cereales rye = {"seigle", 20, 4};
 
 
 int main(){
+
+
 	int day;
 
 	int stockMax;
@@ -105,6 +107,9 @@ int main(){
 	ctSeigle = 30;
 
 	pousseBle = 0;
+	pousseOrge = 0;
+	pousseSarrasin = 0;
+	pousseSeigle = 0;
 
 	day = 1;
 
@@ -112,10 +117,13 @@ int main(){
 		Color(0,15);
 		printf("----JOUR %d----\n", day);
 		Color(15,0);
+		Color(2,0);
 		printf("ta capacite max est de %d\n", stockMax);
+		Color(10,0);
 		printf("ton stock est de: %d\n", stock);
+		Color(3,0);
 		printf("ta population est de %d\n", pop);
-		Color(9,0);
+		Color(14,0);
 		printf("ton argent est de %d\n", po);
 		Color(15,0);
 		printf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour que t'es cereales poussent seul\n");
@@ -126,6 +134,7 @@ int main(){
 				scanf("%d", &choixNourriture);
 				switch(choixNourriture){
 					case 1: //liquides
+					Color(11,0);
 						printf("[1]%s /%d po/%d dans le stock\n", wine.nom, wine.prix, wine.poids);
 						printf("[2]%s /%d po/%d dans le stock\n", beer.nom, beer.prix, beer.poids);
 						printf("[3]%s /%d po/%d dans le stock\n", water.nom, water.prix, water.poids);
@@ -225,6 +234,7 @@ int main(){
 				
 					
 					case 2: //viandes
+						Color(11,0);
 						printf("[1]%s /%d po/%d dans le stock\n", beef.nom, beef.prix, beef.poids);
 						printf("[2]%s /%d po/%d dans le stock\n", turkey.nom, turkey.prix, turkey.poids);
 						printf("[3]%s /%d po/%d dans le stock\n", rabbit.nom, rabbit.prix, rabbit.poids);
@@ -322,6 +332,7 @@ int main(){
 						}
 					break;
 					case 3: //poissons
+						Color(11,0);
 						printf("[1]%s /%d po/%d dans le stock\n", salmon.nom, salmon.prix, salmon.poids);
 						printf("[2]%s /%d po/%d dans le stock\n", trout.nom, trout.prix, trout.poids);
 						printf("[3]%s /%d po/%d dans le stock\n", seaBream.nom, seaBream.prix, seaBream.poids);
@@ -419,6 +430,7 @@ int main(){
 						}
 					break;
 					case 4: //cereales
+						Color(11,0);
 						printf("[1]%s /%d po/%d dans le stock\n", wheat.nom, wheat.prix, wheat.poids);
 						printf("[2]%s /%d po/%d dans le stock\n", buckwheat.nom, buckwheat.prix, buckwheat.poids);
 						printf("[3]%s /%d po/%d dans le stock\n", barley.nom, barley.prix, barley.poids);
@@ -518,6 +530,7 @@ int main(){
 				}	
 			break;
 			case 2: // amelioration des stocks
+				Color(13,0);
 				printf("Pour %d po, tu peux ameliore tes stocks. Ils pourront contenir plus de nourritures\n Es-tu sur de cet achat? [1]oui|[2]non\n", argentStock);
 				scanf("%d", &choixStock);
 				switch(choixStock){
@@ -535,11 +548,17 @@ int main(){
 				
 			break;
 			case 3: // amelioration des champs
+				Color(13,0);
 				printf("es-tu sur de faire cette amelioration? [1]oui|[2]non\n");
 				scanf("%d", &choixChamp);
 				switch(choixChamp){
 					case 1:
-						printf("quelle cereale veut tu ameliore?\n[1]ble [2]sarrasin [3]orge [4]seigle\n");
+
+					ctBle = 25;
+	ctSarrasin = 20;
+	ctOrge = 15;
+	ctSeigle = 30;
+						printf("quelle cereale veut tu ameliore?\n[1]ble (25 po) [2]sarrasin (20 po) [3]orge (15 po) [4]seigle (30 po)\n");
 						scanf("%d", &choixChampCereale);
 						switch(choixChampCereale){
 							case 1: //amelioration du ble
@@ -588,27 +607,28 @@ int main(){
 		day = day + 1;
 		pop = pop * 2;
 
-		wine.prix = wine.prix + 15;
-		beer.prix = beer.prix + 15;
-		water.prix = water.prix + 15;
-		lifeWater.prix = lifeWater.prix + 15;
-		beef.prix = beef.prix + 15;
-		turkey.prix = turkey.prix + 15;
-		rabbit.prix = rabbit.prix + 15;
-		dear.prix = dear.prix + 15;
-		salmon.prix = salmon.prix + 15;
-		trout.prix = trout.prix + 15;
-		seaBream.prix = seaBream.prix + 15;
-		soll.prix = soll.prix + 15;
-		wheat.prix = wheat.prix + 15;
-		buckwheat.prix = buckwheat.prix + 15;
-		barley.prix = barley.prix + 15;
-		rye.prix  = rye.prix + 15;
+		wine.prix = wine.prix * 2;
+		beer.prix = beer.prix * 2;
+		water.prix = water.prix * 2;
+		lifeWater.prix = lifeWater.prix * 2;
+		beef.prix = beef.prix * 2;
+		turkey.prix = turkey.prix * 2;
+		rabbit.prix = rabbit.prix * 2;
+		dear.prix = dear.prix * 2;
+		salmon.prix = salmon.prix * 2;
+		trout.prix = trout.prix * 2;
+		seaBream.prix = seaBream.prix * 2;
+		soll.prix = soll.prix * 2;
+		wheat.prix = wheat.prix * 2;
+		buckwheat.prix = buckwheat.prix * 2;
+		barley.prix = barley.prix * 2;
+		rye.prix  = rye.prix * 2;
 
 		po = po + pop + 10;
 		stock =  stock + pousseBle + pousseSeigle + pousseSarrasin + pousseOrge / 2;
 
 		if (stock <= 0){
+			Color(12,0);
 		printf("tu  as perdu\nTu veux recommence?\n[1]oui|[2]non\n");
 		scanf("%d", &choixReload);
 		switch(choixReload){
