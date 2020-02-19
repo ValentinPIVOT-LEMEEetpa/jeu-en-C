@@ -78,24 +78,26 @@ int main(){
 	int argentStock;
 	int argentChamp;
 
-	stock = 0;
+	stock = 10;
 	stockMax = 5;
 	pop = 1;
 
-	po = 20;
+	po = 50;
 	argentStock = 10;
 
 	day = 1;
 
 	while(stock >= 0 ){
+		Color(0,15);
 		printf("----JOUR %d----\n", day);
+		Color(15,0);
 		Color(14,0);
 		printf("ta capacite max est de %d\n", stockMax);
 		printf("ton stock est de: %d\n", stock);
 		printf("ta population est de %d\n", pop);
 		printf("ton argent est de %d\n", po);
 		Color(15,0);
-		printf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour produire plus\n");
+		printf("Tu veux faire quoi?\n[1]Acheter de la nourriture pour ta population\n[2]Ameliore tes stocks\n[3]Ameliore tes champs pour produire plus et uniquement des cereales\n");
 		scanf("%d", &choixJoueur);
 		switch(choixJoueur){
 			case 1: // achat des nourritures
@@ -112,40 +114,90 @@ int main(){
 						switch(choixLiquide){
 							case 1:
 								printf("vin\n");
-								stock = stock + wine.poids;
-								if(stock > stockMax){
-									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-									stock = stock - wine.poids;
-								};
-								po = po - wine.prix;
-								if(po <= wine.prix){
+								if (stock > stockMax && po < wine.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
 									printf("tu n'as pas asser d'argent pour prendre cet article\n");
-									po = po + wine.prix;
+									//po = po + wine.prix;
 								}
+								else if (stock <= stockMax && po >= wine.prix){
+									printf("le vin te prend %d place dans tes stocks\n", wine.poids);
+									stock = stock + wine.poids;
+									printf("tu as acheter du vin pour %d po\n", wine .prix);
+									po = po - wine.prix;
+								}
+								else if (stock <= stockMax && po < wine.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= wine.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}		
 							break;
+
 							case 2:
 								printf("biere\n");
-								stock = stock +  beer.poids;
-								if(stock > stockMax){
-									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-									stock = stock - beer.poids;
-								};
+								if(stock > stockMax && po < beer.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= beer.prix){
+									printf("la biere te prend %d place dans tes stocks\n", beer.poids);
+									stock = stock + beer.poids;
+									printf("tu as acheter du biere pour %d po\n", beer .prix);
+									po = po - beer.prix;
+								}
+								else if (stock <= stockMax && po < beer.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= beer.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 3:
 								printf("eau\n");
-								stock = stock + water.poids;
-								if(stock > stockMax){
-									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-									stock = stock - water.poids;
-								};
+								if(stock > stockMax && po < water.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= water.prix){
+									printf("l'eau te prend %d place dans tes stocks\n", water.poids);
+									stock = stock + water.poids;
+									printf("tu as acheter du eau pour %d po\n", water .prix);
+									po = po - water.prix;
+								}
+								else if (stock <= stockMax && po < water.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= water.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 4:
-								printf("eau de vie\n");
-								stock = stock + lifeWater.poids;
-								if(stock > stockMax){
-									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-									stock = stock - lifeWater.poids;
-								};
+							printf("eau de vie\n");
+								if(stock > stockMax && po < lifeWater.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= lifeWater.prix){
+									printf("l'eau de vie te prend %d place dans tes stocks\n", lifeWater.poids);
+									stock = stock + lifeWater.poids;
+									printf("tu as acheter du eau de vie pour %d po\n", lifeWater .prix);
+									po = po - lifeWater.prix;
+								}
+								else if (stock <= stockMax && po < lifeWater.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= lifeWater.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
 						}
 					break;
@@ -160,36 +212,91 @@ int main(){
 						scanf("%d", &choixViande);
 						switch(choixViande){
 							case 1:
-							printf("steack\n");
-							stock = stock + 3;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - beef.poids;
-							};
+								printf("steack\n");
+								if (stock > stockMax && po < beef.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= beef.prix){
+									printf("le steack te prend %d place dans tes stocks\n", beef.poids);
+									stock = stock + beef.poids;
+									printf("tu as acheter du steack pour %d po\n", beef .prix);
+									po = po - beef.prix;
+								}
+								else if (stock <= stockMax && po < beef.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= beef.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}		
 							break;
+
 							case 2:
-							printf("dinde\n");
-							stock = stock + 2;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - turkey.poids;
-							};
+								printf("dinde\n");
+								if(stock > stockMax && po < turkey.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= turkey.prix){
+									printf("la dinde te prend %d place dans tes stocks\n", turkey.poids);
+									stock = stock + turkey.poids;
+									printf("tu as acheter de la dinde pour %d po\n", turkey .prix);
+									po = po - turkey.prix;
+								}
+								else if (stock <= stockMax && po < turkey.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= turkey.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 3:
-							printf("lapin\n");
-							stock = stock + 1;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - rabbit.poids;
-							};
+								printf("lapin\n");
+								if(stock > stockMax && po < rabbit.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= rabbit.prix){
+									printf("le lapin te prend %d place dans tes stocks\n", rabbit.poids);
+									stock = stock + rabbit.poids;
+									printf("tu as acheter du lapin pour %d po\n", rabbit .prix);
+									po = po - rabbit.prix;
+								}
+								else if (stock <= stockMax && po < rabbit.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= rabbit.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 4:
-							printf("biche\n");
-							stock = stock + 4;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - dear.poids;
-							};
+								printf("biche\n");
+								if(stock > stockMax && po < lifeWater.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= lifeWater.prix){
+									printf("la biche te prend %d place dans tes stocks\n", lifeWater.poids);
+									stock = stock + lifeWater.poids;
+									printf("tu as acheter de la biche pour %d po\n", lifeWater .prix);
+									po = po - lifeWater.prix;
+								}
+								else if (stock <= stockMax && po < lifeWater.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= lifeWater.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
 						}
 					break;
@@ -202,32 +309,91 @@ int main(){
 						scanf("%d", &choixPoisson);
 						switch(choixPoisson){
 							case 1:
-							printf("saumon\n");
-							stock = stock + 3;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - salmon.poids;
-							};
+								printf("saumon\n");
+								if (stock > stockMax && po < salmon.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= salmon.prix){
+									printf("le saumon te prend %d place dans tes stocks\n", salmon.poids);
+									stock = stock + salmon.poids;
+									printf("tu as acheter du saumon pour %d po\n", salmon .prix);
+									po = po - salmon.prix;
+								}
+								else if (stock <= stockMax && po < salmon.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= salmon.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}		
 							break;
+
 							case 2:
-							printf("truite\n");
-							stock = stock + 2;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - trout.poids;
-							};
+								printf("truite\n");
+								if(stock > stockMax && po < trout.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= trout.prix){
+									printf("la truite te prend %d place dans tes stocks\n", trout.poids);
+									stock = stock + trout.poids;
+									printf("tu as acheter de la truite pour %d po\n", trout .prix);
+									po = po - trout.prix;
+								}
+								else if (stock <= stockMax && po < trout.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= trout.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 3:
-							printf("dorade\n");
-							stock = stock + 1;
+								printf("dorade\n");
+								if(stock > stockMax && po < seaBream.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= seaBream.prix){
+									printf("la dorade te prend %d place dans tes stocks\n", seaBream.poids);
+									stock = stock + seaBream.poids;
+									printf("tu as acheter de la dorade pour %d po\n", seaBream .prix);
+									po = po - seaBream.prix;
+								}
+								else if (stock <= stockMax && po < seaBream.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= seaBream.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 4:
-							printf("sole\n");
-							stock = stock + 4;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - soll.poids;
-							};
+								printf("sole\n");
+								if(stock > stockMax && po < soll.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= soll.prix){
+									printf("la sole te prend %d place dans tes stocks\n", soll.poids);
+									stock = stock + soll.poids;
+									printf("tu as acheter de la sole pour %d po\n", soll .prix);
+									po = po - soll.prix;
+								}
+								else if (stock <= stockMax && po < soll.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= soll.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
 						}
 					break;
@@ -240,36 +406,91 @@ int main(){
 						scanf("%d", &choixCereale);
 						switch(choixCereale){
 							case 1:
-							printf("ble\n");
-							stock = stock + 3;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - wheat.poids;
-							};
+								printf("ble\n");
+								if (stock > stockMax && po < wheat.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= wheat.prix){
+									printf("le ble te prend %d place dans tes stocks\n", wheat.poids);
+									stock = stock + wheat.poids;
+									printf("tu as acheter du ble pour %d po\n", wheat .prix);
+									po = po - wheat.prix;
+								}
+								else if (stock <= stockMax && po < wheat.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= wheat.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}		
 							break;
+
 							case 2:
-							printf("sarrasin\n");
-							stock = stock + 2;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - buckwheat.poids;
-							};
+								printf("sarrasin\n");
+								if(stock > stockMax && po < buckwheat.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= buckwheat.prix){
+									printf("le sarrasin te prend %d place dans tes stocks\n", buckwheat.poids);
+									stock = stock + buckwheat.poids;
+									printf("tu as acheter du sarrasin pour %d po\n", buckwheat .prix);
+									po = po - buckwheat.prix;
+								}
+								else if (stock <= stockMax && po < buckwheat.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= buckwheat.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 3:
-							printf("orge\n");
-							stock = stock + 1;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - barley.poids;
-							};
+								printf("orge\n");
+								if(stock > stockMax && po < barley.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= barley.prix){
+									printf("l'orge te prend %d place dans tes stocks\n", barley.poids);
+									stock = stock + barley.poids;
+									printf("tu as acheter de l'orge pour %d po\n", barley .prix);
+									po = po - barley.prix;
+								}
+								else if (stock <= stockMax && po < barley.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= barley.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
+
 							case 4:
-							printf("seigle\n");
-							stock = stock + 4;
-							if(stock > stockMax){
-								printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks\n");
-								stock = stock - rye.poids;
-							};
+								printf("seigle\n");
+								if(stock > stockMax && po < rye.prix){
+									printf("tu ne peux plus rien acheter, t'as plus de place dans les stocks et ");
+									//stock = stock - wine.poids;
+									printf("tu n'as pas asser d'argent pour prendre cet article\n");
+									//po = po + wine.prix;
+								}
+								else if (stock <= stockMax && po >= rye.prix){
+									printf("le seigle te prend %d place dans tes stocks\n", rye.poids);
+									stock = stock + rye.poids;
+									printf("tu as acheter du seigle pour %d po\n", rye .prix);
+									po = po - rye.prix;
+								}
+								else if (stock <= stockMax && po < rye.prix){
+									printf("tu as de la place pour prendre cet article mais tu n'as pas asser d'argent\n");
+								}
+								else if (stock > stockMax && po >= rye.prix){
+									printf("tu as de l'argent mais tu n'as pas asser de place dans tes stocks\n");
+								}
 							break;
 						}
 					break;
@@ -295,7 +516,10 @@ int main(){
 			case 3: // amelioration des champs
 			break;
 		}
+		
 		day = day + 1;
 		pop = pop * 2;
+		po = po +(pop * 5);
+		stock =  stock / 2;
 	}
 }
