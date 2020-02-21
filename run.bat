@@ -1,5 +1,5 @@
-gcc Rezource.c -o launch
+gcc Rezource.c -o REZOURCE
 
-launch.exe
+REZOURCE.exe
 
 PAUSE
